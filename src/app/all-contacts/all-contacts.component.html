@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col mt-2">
+            <h1>
+                My Contacts App
+                <a class="btn btn-success" routerLink="add">
+                    <i class="fa-solid fa-user-plus me-2"></i>
+                    add new
+                </a>
+            </h1>
+            <p style="text-align: justify;font-weight: 700;">
+                Access and edit your contacts from personal, business, and other accounts with the Contacts app
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="search" [(ngModel)]='searchkey' class="form-control" placeholder="search contacts">
+        </div>
+        
+    </div>
+<div class="mt-5">
+    <div class="row">
+        <div class="col-md-6 mb-3" *ngFor="let contact of allcontacts | filter :searchkey : 'name' ">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 text-center">
+                            <img class="contact-img" [src]="contact.photo" alt="">
+                        </div>
+                        <div class="col-md-7 ">
+                            <ul class="list-group">
+                                <li class="list-group-item">Name : <span class="fw-bolder"> {{contact.name}} </span></li>
+                                <li class="list-group-item">Phone :  <span class="fw-bolder"> {{contact.mobile}} </span> </li>
+                                <li class="list-group-item">Email :  <span class="fw-bolder"> {{contact.email}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-1 d-flex mb-1 flex-column justify-content-center align-items-center">
+                            <a routerLink="view/{{contact.id}}" class="btn btn-success mt-1"><i class="fa-solid fa-eye"></i></a>
+                            <a routerLink="edit/{{contact.id}}" class="btn btn-warning mt-1"><i class="fa-solid fa-pen"></i></a>
+                            <button (click)="deletecontact(contact.id)" class="btn btn-danger mt-1"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
